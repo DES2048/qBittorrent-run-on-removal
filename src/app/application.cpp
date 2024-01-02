@@ -685,15 +685,6 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
-}
-// torrent removed signal
-void Application::torrentRemoved(const BitTorrent::Torrent *torrent)
-{
-    const Preferences *pref = Preferences::instance();
-    // AutoRun program
-    if (pref->isAutoRunOnTorrentRemovedEnabled())
-        runExternalProgram(pref->getAutoRunOnTorrentRemovedProgram().trimmed(), torrent);
-}
 #ifndef DISABLE_GUI
     if (Preferences::instance()->isRecursiveDownloadEnabled())
     {
@@ -708,6 +699,14 @@ void Application::torrentRemoved(const BitTorrent::Torrent *torrent)
         }
     }
 #endif
+}
+// torrent removed signal
+void Application::torrentRemoved(const BitTorrent::Torrent *torrent)
+{
+    const Preferences *pref = Preferences::instance();
+    // AutoRun program
+    if (pref->isAutoRunOnTorrentRemovedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentRemovedProgram().trimmed(), torrent);
 }
 
 void Application::allTorrentsFinished()
