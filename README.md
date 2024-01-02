@@ -14,6 +14,8 @@ support as well as many features.
 
 The free [IP to Country Lite database](https://db-ip.com/db/download/ip-to-country-lite) by [DB-IP](https://db-ip.com/) is used for resolving the countries of peers. The database is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
+Added: Run external program on torrent removal
+
 ### Installation:
 
 Refer to the [INSTALL](INSTALL) file.
