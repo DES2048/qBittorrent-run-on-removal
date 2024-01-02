@@ -685,6 +685,7 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
+}
 // torrent removed signal
 void Application::torrentRemoved(const BitTorrent::Torrent *torrent)
 {
