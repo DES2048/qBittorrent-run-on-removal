@@ -685,7 +685,14 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
-
+// torrent removed signal
+void Application::torrentRemoved(const BitTorrent::Torrent *torrent)
+{
+    const Preferences *pref = Preferences::instance();
+    // AutoRun program
+    if (pref->isAutoRunOnTorrentRemovedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentRemovedProgram().trimmed(), torrent);
+}
 #ifndef DISABLE_GUI
     if (Preferences::instance()->isRecursiveDownloadEnabled())
     {
@@ -834,6 +841,7 @@ int Application::exec()
     {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved, this, &Application::torrentRemoved);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);

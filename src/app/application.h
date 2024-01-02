@@ -144,6 +144,7 @@ private slots:
     void processMessage(const QString &message);
     void torrentAdded(const BitTorrent::Torrent *torrent) const;
     void torrentFinished(const BitTorrent::Torrent *torrent);
+    void torrentRemoved(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
 
