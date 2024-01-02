@@ -1158,7 +1158,7 @@ QString Preferences::getAutoRunOnTorrentRemovedProgram() const
 {
     return value<QString>(u"AutoRun/OnTorrentRemoved/Program"_s);
 }
-void Preferences::setAutoRunOnTorrentRemoverProgram(const QString &program)
+void Preferences::setAutoRunOnTorrentRemovedProgram(const QString &program)
 {
     if (program == getAutoRunOnTorrentRemovedProgram())
         return;
